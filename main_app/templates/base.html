@@ -24,7 +24,6 @@
                 {% if user.is_authenticated %}
 
                 <div>
-                    <a class="nav-link" href="/posts">Posts</a>
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     <a class="nav-link" href="{% url 'profile' %}" tabindex="-1" aria-disabled="true">Profile</a>
                 </div>
