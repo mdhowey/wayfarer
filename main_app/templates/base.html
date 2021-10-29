@@ -20,9 +20,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="#modalLogin" data-bs-toggle="modal" data-bs-target="#modalLogin">Sign in</a>
-                    <a class="nav-link" href="#modalRegister" data-bs-toggle="modal" data-bs-target="#modalRegister">Sign up</a>
-                    <a class="nav-link" href="profile/" tabindex="-1" aria-disabled="true">Profile</a>
+
+                    <a class="nav-link" href="{% url 'login' %}">Sign in</a>
+                    <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+
+                    <!-- LOGIN/REGISTER MODAL STUFF COMMENTED OUT BELOW -->
+                    <!-- <a class="nav-link" href="#modalLogin" data-bs-toggle="modal" data-bs-target="#modalLogin">Sign in</a>
+                    <a class="nav-link" href="#modalRegister" data-bs-toggle="modal" data-bs-target="#modalRegister">Sign up</a> -->
+
+                    <a class="nav-link" href="{% url 'profile' %}" tabindex="-1" aria-disabled="true">Profile</a>
                 </div>
             </div>
         </div>

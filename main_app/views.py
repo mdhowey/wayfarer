@@ -19,6 +19,22 @@ class Home(TemplateView):
 class Profile(TemplateView):
     template_name = 'profile.html'
 
+class Signup(View):
+    # show a form to fill out
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    # on form ssubmit validate the form and login the user.
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("home")
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
 
 
 
