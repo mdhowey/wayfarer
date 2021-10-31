@@ -2,9 +2,6 @@
 from django.contrib.auth.models import User
 
 
-
-
-
 # Profile extension commented out (Howey and Michael approach below)
 
 # from django.utils.translation import ugettext_lazy as _
