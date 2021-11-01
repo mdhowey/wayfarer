@@ -67,11 +67,11 @@
             </div> -->
                 <div class="list-group">
                     <div class="d-flex flex-column bd-highlight mb-4 mt-4">
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                            <div class="row">
-
-                                {% for post in posts %}
-
+                        
+                        {% for post in posts %}
+                        
+                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="row">
                                     <div class="col-sm-4">
                                         <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
                                     </div>
@@ -83,11 +83,11 @@
                                         <p class="mb-1">{{ post.user }}</p>
                                         <small>{{ post.body }}</small>
                                     </div>
+                                </div>
+                            </a>
 
-                                {% endfor %}
+                        {% endfor %}
 
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
