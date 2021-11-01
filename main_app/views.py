@@ -8,6 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .models import Post
 
 # Profile extension commented out
 # from .models import Profile
@@ -19,6 +20,14 @@ class Home(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class Profile(TemplateView):
     template_name = 'profile.html'
+
+    def get_context_data(self):
+        user = self.request.user
+        context = {}
+        context["posts"] = Post.objects.filter(user=user)
+        context["header"] = f"{user}'s posts"
+        print(context)
+        return context
 
 class Signup(View):
     def get(self, request):
