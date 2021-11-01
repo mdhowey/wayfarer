@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post
+from .models import Post, City
 
 # Profile extension commented out
 # from .models import Profile
@@ -28,6 +28,19 @@ class Profile(TemplateView):
         context["header"] = f"{user}'s posts"
         print(context)
         return context
+
+class CityList(TemplateView):
+    template_name = 'city_list.html'
+
+    def get_context_data(self):
+        context = {}
+        context["cities"] = City.objects.all()
+        context["header"] = f"All city posts"
+        return context
+
+class CityDetail(DetailView):
+    model = City
+    template_name = "city_detail.html"
 
 class Signup(View):
     def get(self, request):
