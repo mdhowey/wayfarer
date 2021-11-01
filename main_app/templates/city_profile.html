@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} | {{city.name}} {% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-8">
+        <h1>{{ user.username }}</h1>
+        <h3>STRETCH: City</h3>
+        <h5>STRETCH: About section lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nemo nobis temporibus consectetur, architecto commodi. Quasi eos sint impedit, obcaecati tempore quos assumenda esse, recusandae architecto asperiores quaerat harum nemo.</h5>
+    </div>
+    <div class="col-4 d-flex align-items-center justify-content-end">
+        <i class="fas fa-user-astronaut fa-8x"></i>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-sm-4">
+        <h1>Posts</h1>
+    </div>
+    <div class="col-sm-8 d-flex align-items-center justify-content-end">
+        <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#edit__profile">
+            Edit Profile
+        </button>
+    </div>
+</div>
+
+{% endblock %}
