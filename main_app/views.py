@@ -38,9 +38,27 @@ class CityList(TemplateView):
         context["header"] = f"All city posts"
         return context
 
-class CityDetail(DetailView):
-    model = City
+# @method_decorator(login_required, name='dispatch')
+# class CityDetail(DetailView):
+#     model = City
+#     template_name = "city_profile.html"
+
+#     def get_context_data(self, **kwargs):
+#         context_1 = {}
+#         context_2 = {}
+#         context_1["posts"] = Post.objects.filter(city=self.object.pk)
+#         context_2["city"] = City.objects.filter(id=self.object.pk)
+#         return context_1, context_2
+
+@method_decorator(login_required, name='dispatch')
+class CityDetail(TemplateView):
     template_name = "city_profile.html"
+
+    def get_context_data(self, pk, **kwargs):
+        context = super(CityDetail, self).get_context_data(**kwargs)
+        context["city"] = City.objects.filter(id=pk)
+        context["posts"] = Post.objects.filter(city=pk)
+        return context
 
 class Signup(View):
     def get(self, request):
