@@ -46,7 +46,7 @@ class CityList(TemplateView):
 
 @method_decorator(login_required, name='dispatch')
 class CityDetail(TemplateView):
-    template_name = "city_profile.html"
+    template_name = "city_detail.html"
 
     def get_context_data(self, pk, **kwargs):
         context = super(CityDetail, self).get_context_data(**kwargs)
@@ -69,6 +69,11 @@ class Signup(View):
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
+
+class PostCreate(CreateView):
+    model = Post
+    fields = ['title', 'img', 'body']
+    template_name = "post_create.html"
 
 class PostList(DetailView):
     model = Post

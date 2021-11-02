@@ -9,4 +9,5 @@ urlpatterns = [
     path('cities/', views.CityList.as_view(), name="city_list"),
     path('cities/<int:pk>/', views.CityDetail.as_view(), name="city_detail"),
     path('post/<int:pk>/', views.PostList.as_view(), name = 'post_show'),
+    path('post/create/', views.PostCreate.as_view(), name = 'post_create')
 ]
