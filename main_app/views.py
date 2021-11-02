@@ -8,10 +8,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post, City, Profile
-
-# Profile extension commented out
-# from .models import Profile
+from .models import Post, City
+from django.contrib.auth.models import User
 
 # Create your views here.
 class Home(TemplateView):
@@ -23,10 +21,11 @@ class Profile(TemplateView):
 
     def get_context_data(self):
         user = self.request.user
+        user_profile = User.objects.get(id=self.request.user.id)
         context = {}
         context["posts"] = Post.objects.filter(user=user)
         context["header"] = f"{user}'s posts"
-        print(context)
+        context["profile"] = user_profile
         return context
 
 class CityList(TemplateView):
@@ -38,17 +37,10 @@ class CityList(TemplateView):
         context["header"] = f"All city posts"
         return context
 
-# @method_decorator(login_required, name='dispatch')
-# class CityDetail(DetailView):
-#     model = City
-#     template_name = "city_profile.html"
-
-#     def get_context_data(self, **kwargs):
-#         context_1 = {}
-#         context_2 = {}
-#         context_1["posts"] = Post.objects.filter(city=self.object.pk)
-#         context_2["city"] = City.objects.filter(id=self.object.pk)
-#         return context_1, context_2
+# This view is not working
+@method_decorator(login_required, name='dispatch')
+class ProfileEdit(UpdateView):
+    template_name = "profile_edit.html"
 
 @method_decorator(login_required, name='dispatch')
 class CityDetail(TemplateView):
@@ -79,7 +71,7 @@ class Signup(View):
 class PostList(DetailView):
     model = Post
     template_name = "post_show.html"
-        
+
 
 
 
