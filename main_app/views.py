@@ -58,6 +58,11 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
+class PostList(DetailView):
+    model = Post
+    template_name = "post_show.html"
+        
+
 
 
 

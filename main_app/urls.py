@@ -7,4 +7,5 @@ urlpatterns = [
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
     path('cities/', views.CityList.as_view(), name="city_list"),
     path('cities/<int:pk>/', views.CityDetail.as_view(), name="city_detail"),
+    path('post/<int:pk>/', views.PostList.as_view(), name = 'post_show'),
 ]
