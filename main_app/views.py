@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post, City
+from .models import Post, City, Profile
 
 # Profile extension commented out
 # from .models import Profile
@@ -40,7 +40,7 @@ class CityList(TemplateView):
 
 class CityDetail(DetailView):
     model = City
-    template_name = "city_detail.html"
+    template_name = "city_profile.html"
 
 class Signup(View):
     def get(self, request):
