@@ -29,7 +29,7 @@
 
                     {% for post in posts %}
 
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <a href="{% url 'post_show' post.pk %}" class="list-group-item list-group-item-action" aria-current="true">
                             <div class="row">
                                 <div class="col-sm-4">
                                     <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
