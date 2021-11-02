@@ -3,10 +3,10 @@
 {% block content %}
 <div class="list-group">
     <div class="d-flex flex-column bd-highlight mb-4 mt-4">
-        
+
         {% for city in cities %}
-        
-            <a href="{{% url 'city_detail' city.pk %}}" class="list-group-item list-group-item-action" aria-current="true">
+
+            <a href="{% url 'city_detail' city.pk %}" class="list-group-item list-group-item-action" aria-current="true">
                 <div class="row">
                     <div class="col-sm-4">
                         <img src="{{ city.img }}" class="img-thumbnail float-end" class="img-fluid" alt="{{ city.name }}">
