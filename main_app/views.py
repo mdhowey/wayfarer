@@ -8,10 +8,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post
-
-# Profile extension commented out
-# from .models import Profile
+from .models import Post, City
+from django.contrib.auth.models import User
 
 # Create your views here.
 class Home(TemplateView):
@@ -23,10 +21,35 @@ class Profile(TemplateView):
 
     def get_context_data(self):
         user = self.request.user
+        user_profile = User.objects.get(id=self.request.user.id)
         context = {}
         context["posts"] = Post.objects.filter(user=user)
         context["header"] = f"{user}'s posts"
-        print(context)
+        context["profile"] = user_profile
+        return context
+
+class CityList(TemplateView):
+    template_name = 'city_list.html'
+
+    def get_context_data(self):
+        context = {}
+        context["cities"] = City.objects.all()
+        context["header"] = f"All city posts"
+        return context
+
+# This view is not working
+@method_decorator(login_required, name='dispatch')
+class ProfileEdit(UpdateView):
+    template_name = "profile_edit.html"
+
+@method_decorator(login_required, name='dispatch')
+class CityDetail(TemplateView):
+    template_name = "city_profile.html"
+
+    def get_context_data(self, pk, **kwargs):
+        context = super(CityDetail, self).get_context_data(**kwargs)
+        context["city"] = City.objects.filter(id=pk)
+        context["posts"] = Post.objects.filter(city=pk)
         return context
 
 class Signup(View):
@@ -44,6 +67,11 @@ class Signup(View):
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
+
+class PostList(DetailView):
+    model = Post
+    template_name = "post_show.html"
+
 
 
 

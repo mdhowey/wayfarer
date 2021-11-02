@@ -2,12 +2,31 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    current_city = models.CharField(max_length = 100, default="London")
+    bio = models.TextField(max_length=500, default="")
+
+class City(models.Model):
+    name = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    img = models.CharField(max_length=500)
+    population = models.IntegerField(default=0)
+    currency = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     img = models.CharField(max_length=250)
     body = models.TextField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="posts")
+
+    def __str__(self):
+        return self.title
 
 
 
@@ -58,10 +77,7 @@ class Post(models.Model):
 # from django.db.models.signals import post_save
 # from django.dispatch import receiver
 
-# # Create your models here.
-# class Profile(models.Model):
-#     user = models.OneToOneField(User, on_delete = models.CASCADE)
-#     current_city = models.CharField(max_length = 100)
+# Create your models here.
 
 # @receiver(post_save, sender=User)
 # def create_user_profile(sender, instance, created, **kwargs):
