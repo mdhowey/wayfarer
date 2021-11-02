@@ -16,7 +16,12 @@
         <nav class="nav">
           <div class="col">
             <button type="submit" class="btn btn-outline-success my-2">Submit</button>
-            <a href="{% url 'city_profile' city.id %}" class="btn btn-outline-info">Cancel</a>
+            <button onclick="goBack()" class="btn btn-outline-info">Cancel</button>
+            <script>
+            function goBack() {
+              window.history.back();
+            }
+            </script>
           </div>
         </nav>
       </div>
