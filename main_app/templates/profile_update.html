@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block title %} | Edit User Profile {% endblock %}
 {% block content %}
-<div class="container-fluid mt-4">
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Submit" />
+</form>
+
+<!-- <div class="container-fluid mt-4">
   <div class="d-flex justify-content-center">
     <form method="post">
       {% csrf_token %}
@@ -22,5 +29,5 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->
 {% endblock %}

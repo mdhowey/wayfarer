@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post, City
+from .models import Post, City, Profile
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -16,7 +16,7 @@ class Home(TemplateView):
     template_name = 'home.html'
 
 @method_decorator(login_required, name='dispatch')
-class Profile(TemplateView):
+class ProfileView(TemplateView):
     template_name = 'profile.html'
 
     def get_context_data(self):
@@ -28,6 +28,13 @@ class Profile(TemplateView):
         context["profile"] = user_profile
         return context
 
+@method_decorator(login_required, name='dispatch')
+class ProfileEdit(UpdateView):
+    model = Profile
+    fields = ['name', 'current_city', 'img', 'bio']
+    template_name = "profile_update.html"
+    success_url = "/profile/"
+
 class CityList(TemplateView):
     template_name = 'city_list.html'
 
@@ -36,11 +43,6 @@ class CityList(TemplateView):
         context["cities"] = City.objects.all()
         context["header"] = f"All city posts"
         return context
-
-# This view is not working
-@method_decorator(login_required, name='dispatch')
-class ProfileEdit(UpdateView):
-    template_name = "profile_edit.html"
 
 @method_decorator(login_required, name='dispatch')
 class CityDetail(TemplateView):
