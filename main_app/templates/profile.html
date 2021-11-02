@@ -24,71 +24,29 @@
                     </button>
                 </div>
             </div>
-            <!-- New Post form; needs new page -->
-            <!-- <div class="modal fade" id="edit__profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit User Profile</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                        <div class="mb-3">
-                                            <label class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="user__name" name="user__name" placeholder="Username"/>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">User Image</label>
-                                            <input type="text" class="form-control" id="user__img" name="user__img" placeholder="Image URL"/>
-                                        </div>
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Select City
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">London</a></li>
-                                            <li><a class="dropdown-item" href="#">Sydney</a></li>
-                                            <li><a class="dropdown-item" href="#">San Francisco</a></li>
-                                            <li><a class="dropdown-item" href="#">Seattle</a></li>
-                                        </ul>
-
+            <div class="list-group">
+                <div class="d-flex flex-column bd-highlight mb-4 mt-4">
+                    
+                    {% for post in posts %}
+                    
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
                                 </div>
-                                <div class="mb-3">
-                                    <textarea class="form-control" id="user__about" name="user__about" placeholder="Tell us about yourself" /></textarea>
-                                </div>
-                                <div class="modal-footer d-block">
-                                    <button type="submit" class="btn btn-success float-end">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-                <div class="list-group">
-                    <div class="d-flex flex-column bd-highlight mb-4 mt-4">
-                        
-                        {% for post in posts %}
-                        
-                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
+                                <div class="col-sm-8">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ post.title }}</h5>
+                                        <small>{{ post.created_at }}</small>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">{{ post.title }}</h5>
-                                            <small>{{ post.created_at }}</small>
-                                        </div>
-                                        <p class="mb-1">{{ post.user }}</p>
-                                        <small>{{ post.body }}</small>
-                                    </div>
+                                    <p class="mb-1">{{ post.user }}</p>
+                                    <small>{{ post.body }}</small>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
 
-                        {% endfor %}
+                    {% endfor %}
 
-                    </div>
                 </div>
             </div>
         </div>
