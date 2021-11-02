@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Post, City
+from .models import Post, City, Profile
 
 # Profile extension commented out
 # from .models import Profile
@@ -57,6 +57,11 @@ class Signup(View):
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
+
+class PostList(DetailView):
+    model = Post
+    template_name = "post_show.html"
+        
 
 
 

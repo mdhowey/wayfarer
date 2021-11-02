@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} | Show{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-4">
+        <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
+    </div>
+    <div class="col-sm-8">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ post.title }}</h5>
+                <small>{{ post.created_at }}</small>
+            </div>
+        <p class="mb-1">{{ post.user }}</p>
+        <small>{{ post.body }}</small>
+    </div>
+</div>
+    
+
+
+
+{% endblock %}

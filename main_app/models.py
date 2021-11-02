@@ -2,6 +2,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    current_city = models.CharField(max_length = 100, default="London")
+    bio = models.TextField(max_length=500, default="")
+
 class City(models.Model):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
