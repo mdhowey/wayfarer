@@ -21,7 +21,7 @@ class ProfileView(TemplateView):
 
     def get_context_data(self):
         user = self.request.user
-        user_profile = User.objects.get(id=self.request.user.id)
+        user_profile = Profile.objects.get(id=self.request.user.id)
         context = {}
         context["posts"] = Post.objects.filter(user=user)
         context["header"] = f"{user}'s posts"
