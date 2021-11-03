@@ -15,7 +15,6 @@ from django.contrib.auth.models import User
 class Home(TemplateView):
     template_name = 'home.html'
 
-@method_decorator(login_required, name='dispatch')
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 
@@ -50,7 +49,6 @@ class ProfileCreate(CreateView):
         Profile.objects.create(user_id=user_id, user=user, name=name, current_city=current_city, img=img, bio=bio)
         return redirect('profile')
 
-
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdate(UpdateView):
     model = Profile
@@ -67,7 +65,6 @@ class CityList(TemplateView):
         context["header"] = f"All city posts"
         return context
 
-@method_decorator(login_required, name='dispatch')
 class CityDetail(TemplateView):
     template_name = "city_detail.html"
 
@@ -93,6 +90,7 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
+@method_decorator(login_required, name='dispatch')
 class PostCreate(CreateView):
     model = Post
     fields = ['title', 'img', 'body']
@@ -101,13 +99,33 @@ class PostCreate(CreateView):
     def get_context_data(self, **kwargs):
         context = super(PostCreate, self).get_context_data(**kwargs)
         context["city"] = City.objects.all()
+        context["user"] = User.objects.get(id=self.request.user.id)
         return context
 
-class PostList(DetailView):
+    def post(self, request):
+        user_id = request.POST.get("user_id")
+        title = request.POST.get("title")
+        img = request.POST.get("img")
+        body = request.POST.get("body")
+        city = City.objects.get(name=request.POST.get("city"))
+        Post.objects.create(user_id=user_id, title=title, img=img, city=city, body=body)
+        return redirect('city_list')
+
+class PostShow(DetailView):
     model = Post
     template_name = "post_show.html"
 
+@method_decorator(login_required, name='dispatch')
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ['title', 'img', 'body', 'city']
+    template_name = "post_update.html"
+    success_url = "/cities/"
 
+class PostDelete(DeleteView):
+    model = Post
+    template_name = "post_delete.html"
+    success_url = "/cities/"
 
 
 

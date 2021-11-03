@@ -15,10 +15,10 @@
             <small>{{ post.body }}</small>
         </div>
         <div class="col-3">
-            <a href="#" type="button" class="btn btn-outline-warning mt-4 text-dark">
+            <a href="{% url 'post_update' post.pk %}" type="button" class="btn btn-outline-warning mt-4 text-dark">
                 Edit Post
             </a>
-            <a href="#" type="button" class="btn btn-outline-danger mt-4">
+            <a href="{% url 'post_delete' post.pk %}" type="button" class="btn btn-outline-danger mt-4">
                 Delete
             </a>
         </div>
