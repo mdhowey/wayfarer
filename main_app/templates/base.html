@@ -30,10 +30,11 @@
                 </div>
 
                 {% else %}
-                
+
                 <div class="d-flex flex-column">
                     <a class="nav-link" href="{% url 'login' %}">Sign in</a>
                     <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
+                    <a class="nav-link" href="{% url 'city_list' %}">Cities</a>
                 </div>
 
                 {% endif %}
