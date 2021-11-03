@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.decorators import method_decorator
-from .models import Post, City, Profile
+from .models import Comment, Post, City, Profile
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -119,7 +119,6 @@ class PostCreate(LoginRequiredMixin, CreateView):
 class PostShow(DetailView):
     model = Post
     template_name = "post_show.html"
-
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post

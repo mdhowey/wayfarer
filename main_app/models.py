@@ -36,6 +36,12 @@ class Post(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+class Comment(models.Model):
+    body = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+
 # Profile extension commented out (Howey and Michael approach below)
 
 # from django.utils.translation import ugettext_lazy as _
