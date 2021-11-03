@@ -21,12 +21,35 @@ class ProfileView(TemplateView):
 
     def get_context_data(self):
         user = self.request.user
-        user_profile = Profile.objects.get(id=self.request.user.id)
+        user_profile = Profile.objects.get(user_id=self.request.user.id)
         context = {}
         context["posts"] = Post.objects.filter(user=user)
         context["header"] = f"{user}'s posts"
         context["profile"] = user_profile
         return context
+
+@method_decorator(login_required, name='dispatch')
+class ProfileCreate(CreateView):
+    model = Profile
+    fields = ['name', 'current_city', 'img', 'bio']
+    template_name = "profile_create.html"
+    success_url = "/profile/"
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateView, self).get_context_data(**kwargs)
+        context["user"] = User.objects.get(id=self.request.user.id)
+        return context
+
+    def post(self, request, pk):
+        user_id = request.POST.get("user_id")
+        user = request.POST.get("user")
+        name = request.POST.get("name")
+        current_city = request.POST.get("current_city")
+        img = request.POST.get("img")
+        bio = request.POST.get("bio")
+        Profile.objects.create(user_id=user_id, user=user, name=name, current_city=current_city, img=img, bio=bio)
+        return redirect('profile')
+
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdate(UpdateView):
@@ -65,7 +88,7 @@ class Signup(View):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("home")
+            return redirect('profile_create', pk=self.request.user.id)
         else:
             context = {"form": form}
             return render(request, "registration/signup.html", context)
