@@ -1,8 +1,9 @@
+from django.contrib.auth import models
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -119,6 +120,10 @@ class PostCreate(LoginRequiredMixin, CreateView):
 class PostShow(DetailView):
     model = Post
     template_name = "post_show.html"
+
+class CommentList(DetailView):
+    model = Comment
+    template_name = "comment_list.html"
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
