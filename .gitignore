@@ -1,5 +1,6 @@
-# Local files (SECRET_KEY)
+# Local files 
 secrets.py
+migrations/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
