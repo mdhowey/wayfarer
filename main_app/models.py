@@ -25,7 +25,7 @@ class City(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     img = models.CharField(max_length=500)
-    body = models.TextField(max_length=500)
+    body = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name="posts")

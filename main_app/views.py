@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.decorators import method_decorator
 from .models import Post, City, Profile
 from django.contrib.auth.models import User
@@ -27,13 +28,13 @@ class ProfileView(TemplateView):
         context["profile"] = user_profile
         return context
 
-@method_decorator(login_required, name='dispatch')
-class ProfileCreate(CreateView):
+
+class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
     fields = ['name', 'current_city', 'img', 'bio']
     template_name = "profile_create.html"
     success_url = "/profile/"
-
+ 
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
         context["user"] = User.objects.get(id=self.request.user.id)
@@ -49,12 +50,16 @@ class ProfileCreate(CreateView):
         Profile.objects.create(user_id=user_id, user=user, name=name, current_city=current_city, img=img, bio=bio)
         return redirect('profile')
 
-@method_decorator(login_required, name='dispatch')
-class ProfileUpdate(UpdateView):
+
+class ProfileUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     fields = ['name', 'current_city', 'img', 'bio']
     template_name = "profile_update.html"
     success_url = "/profile/"
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
 
 class CityList(TemplateView):
     template_name = 'city_list.html'
@@ -90,8 +95,8 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
-@method_decorator(login_required, name='dispatch')
-class PostCreate(CreateView):
+
+class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'img', 'body']
     template_name = "post_create.html"
@@ -115,17 +120,26 @@ class PostShow(DetailView):
     model = Post
     template_name = "post_show.html"
 
-@method_decorator(login_required, name='dispatch')
-class PostUpdate(UpdateView):
+
+class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'img', 'body', 'city']
     template_name = "post_update.html"
     success_url = "/cities/"
 
-class PostDelete(DeleteView):
+    def test_func(self):
+        obj = self.get_object()
+        return obj.user == self.request.user
+
+class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = "/cities/"
+
+    def test_func(self):
+        obj = self.get_object();
+        return obj.user == self.request.user
+        
 
 
 
