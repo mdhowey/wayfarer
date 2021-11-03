@@ -11,7 +11,11 @@
             <h5>Currency: {{city.currency}}</h5>
         </div>
         <div class="col-4 d-flex flex-column align-items-center justify-content-end">
-            <i class="fas fa-user-astronaut fa-8x"></i>
+            {% if city.img == NULL %}
+                <i class="fas fa-city fa-8x"></i>
+            {% else %}
+                <img src="{{ city.img }}" alt="{{ city.name }}" style="width: 200px; height: auto;" >
+            {% endif %}
             <!-- change href below to create comment template path: % url 'post_create' % -->
             <a href="{% url 'post_create' %}" type="button" class="btn btn-outline-success mt-4">
                 Add Post
