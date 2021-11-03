@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% block title %} | Show{% endblock %}
 {% block content %}
-
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
+        {% if post.img == NULL %}
+            <i class="fas fa-glass-cheers fa-8x"></i>
+        {% else %}
+            <img src="{{ post.img }}" alt="{{ post.name }}" style="width: 200px; height: auto;" >
+        {% endif %}
         </div>
         <div class="col-sm-8">
             <div class="d-flex w-100 justify-content-between">
@@ -16,16 +19,21 @@
             <small>{{ post.body }}</small>
         </div>
         <div class="col-3">
-            <a href="#" type="button" class="btn btn-outline-warning mt-4 text-dark">
+            {% if user.is_authenticated and user_id == post.user%}
+            <a href="{% url 'post_update' post.pk %}" type="button" class="btn btn-outline-warning mt-4 text-dark">
                 Edit Post
             </a>
-            <a href="#" type="button" class="btn btn-outline-danger mt-4">
+            <a href="{% url 'post_delete' post.pk %}" type="button" class="btn btn-outline-danger mt-4">
                 Delete
             </a>
+            {% endif %}
+            <button onclick="goBack()" class="btn btn-outline-info">Go back</button>
+            <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
         </div>
     </div>
 </div>
-
-
-
 {% endblock %}

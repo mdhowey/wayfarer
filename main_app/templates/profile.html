@@ -7,11 +7,15 @@
             <div class="row">
                 <div class="col-8">
                     <h1>{{ user.username }}</h1>
-                    <h3>{{ user.profile.current_city }}</h3>
-                    <h5>{{ user.profile.bio }}</h5>
+                    <h3>{{ profile.current_city }}</h3>
+                    <h5>{{ profile.bio }}</h5>
                 </div>
                 <div class="col-4 d-flex align-items-center justify-content-end">
-                    <i class="fas fa-user-astronaut fa-8x"></i>
+                    {% if profile.img == NULL %}
+                        <i class="fas fa-user-astronaut fa-8x"></i>
+                    {% else %}
+                        <img src="{{ profile.img }}" alt="{{ profile.name }}" style="width: 200px; height: auto;" >
+                    {% endif %}
                 </div>
             </div>
             <div class="row mt-4">
@@ -19,7 +23,7 @@
                     <h1>Posts</h1>
                 </div>
                 <div class="col-sm-8 d-flex align-items-center justify-content-end">
-                    <a href="{% url 'profile_edit' user.pk %}" type="button" class="btn btn-success btn-lg">
+                    <a href="{% url 'profile_update' profile.id %}" type="button" class="btn btn-success btn-lg">
                         Edit Profile
                     </a>
                 </div>

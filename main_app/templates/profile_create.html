@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} | Edit User Profile {% endblock %}
+{% block title %} | Create Profile {% endblock %}
 {% block content %}
 <div class="container-fluid mt-4">
   <div class="d-flex justify-content-center">
@@ -11,11 +11,12 @@
             {{ field.errors }}
             {{ field.label_tag }} <br>
             {{ field }}
+            <input type="hidden" name="user_id" value="{{ user.id }}" />
           </div>
         {% endfor %}
         <nav class="nav">
           <div class="col">
-            <button type="submit" class="btn btn-outline-success my-2">Submit</button>
+            <button type="submit" class="btn btn-outline-success my-2">Create</button>
             <a href="{% url 'profile' %}" class="btn btn-outline-info">Cancel</a>
           </div>
         </nav>
