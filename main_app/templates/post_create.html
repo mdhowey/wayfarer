@@ -6,6 +6,11 @@
     <form method="post">
       {% csrf_token %}
       <div class="form-control g-0">
+        <select name="" id="">
+          {% for c in city %}
+            <option>{{ c.name }}</option>
+          {% endfor %}
+        </select>
         {% for field in form %}
           <div class="fieldWrapper">
             {{ field.errors }}
