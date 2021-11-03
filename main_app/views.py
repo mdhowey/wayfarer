@@ -52,7 +52,7 @@ class ProfileCreate(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ProfileEdit(UpdateView):
+class ProfileUpdate(UpdateView):
     model = Profile
     fields = ['name', 'current_city', 'img', 'bio']
     template_name = "profile_update.html"
@@ -97,6 +97,11 @@ class PostCreate(CreateView):
     model = Post
     fields = ['title', 'img', 'body']
     template_name = "post_create.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PostCreate, self).get_context_data(**kwargs)
+        context["city"] = City.objects.all()
+        return context
 
 class PostList(DetailView):
     model = Post
