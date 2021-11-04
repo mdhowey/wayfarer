@@ -35,9 +35,10 @@
         </script>
         </div>
         <div class="row mt-4">
-            <div class="col-8">
+            <div class="col-8 offset-4">
             {% for comment in comments %}
                 <div class="card mt-4">
+                    <!-- <img src="{{ profile.img }}" alt="{{ profile.name }}" class="img-thumbnail"> -->
                     <!-- <h3 class="card-title">{{ user.name }}</h3> -->
                     <p class="card-body">{{ comment.body }}</p>
                     <small class="ms-3 mb-2">{{ comment.created_at }}</small>

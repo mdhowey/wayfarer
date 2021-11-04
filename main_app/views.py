@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic.base import TemplateView
@@ -120,6 +121,12 @@ class PostShow(DetailView):
     model = Post
     template_name = "post_show.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.filter(pk=1)
+        print('object_list')
+        return context  
+
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'img', 'body', 'city']
@@ -138,11 +145,6 @@ class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object();
         return obj.user == self.request.user
-        
-
-
-
-
 
 # PROFILE EXTENSION WORK COMMENTED OUT BELOW
 
