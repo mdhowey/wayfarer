@@ -117,14 +117,13 @@ class PostCreate(LoginRequiredMixin, CreateView):
         Post.objects.create(user_id=user_id, title=title, img=img, city=city, body=body)
         return redirect('city_list')
 
-class PostShow(DetailView):
-    model = Post
+class PostShow(TemplateView):
     template_name = "post_show.html"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, pk, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(pk=1)
-        print('object_list')
+        context['posts'] = Post.objects.filter(id=pk)
+        context['comments'] = Comment.objects.filter(post=pk)
         return context  
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
