@@ -31,6 +31,7 @@
                     {% if user.is_authenticated %}
 
                     <div class="d-flex justify-content-end">
+                        <a class="nav-link ms-2" href="{% url 'about' %}">About</a>
                         <a class="nav-link ms-2" href="{% url 'logout' %}">Logout</a>
                         <a class="nav-link ms-2" href="{% url 'profile' %}" tabindex="-1"
                             aria-disabled="true">Profile</a>
@@ -43,6 +44,7 @@
                         <a class="nav-link ms-2" href="{% url 'login' %}">Sign in</a>
                         <a class="nav-link ms-2" href="{% url 'signup' %}">Sign up</a>
                         <a class="nav-link ms-2" href="{% url 'city_list' %}">Cities</a>
+                        <a class="nav-link ms-2" href="{% url 'about' %}">About</a>
                     </div>
 
                     {% endif %}
