@@ -1,4 +1,4 @@
-from .secrets import SECRET_KEY
+# from .secrets import SECRET_KEY
 """
 Django settings for wayfarer project.
 
