@@ -35,7 +35,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     fields = ['name', 'current_city', 'img', 'bio']
     template_name = "profile_create.html"
     success_url = "/profile/"
- 
+
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
         context["user"] = User.objects.get(id=self.request.user.id)
@@ -124,7 +124,7 @@ class PostShow(TemplateView):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(id=pk)
         context['comments'] = Comment.objects.filter(post=pk)
-        return context  
+        return context
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
