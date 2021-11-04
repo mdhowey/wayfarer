@@ -17,6 +17,9 @@ from django.contrib.auth.models import User
 class Home(TemplateView):
     template_name = 'home.html'
 
+class About(TemplateView):
+    template_name = 'about.html'
+
 class ProfileView(TemplateView):
     template_name = 'profile.html'
 
