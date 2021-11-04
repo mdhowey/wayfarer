@@ -1,29 +1,31 @@
 {% extends 'base.html' %}
 {% block title %} | Cities{% endblock %}
 {% block content %}
-<div class="list-group">
-    <div class="d-flex flex-column bd-highlight mb-4 mt-4">
+<div class="container">
+    <div class="list-group">
+        <div class="d-flex flex-column bd-highlight mb-4 mt-4">
 
-        {% for city in cities %}
+            {% for city in cities %}
 
-            <a href="{% url 'city_detail' city.pk %}" class="list-group-item list-group-item-action" aria-current="true">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img src="{{ city.img }}" class="img-thumbnail float-end" class="img-fluid" alt="{{ city.name }}">
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ city.name }}</h5>
-                            <small>{{ city.country }}</small>
+                <a href="{% url 'city_detail' city.pk %}" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="row mt">
+                        <div class="col-sm-4">
+                            <img src="{{ city.img }}" class="img-thumbnail float-start" class="img-fluid" alt="{{ city.name }}">
                         </div>
-                        <p class="mb-1">{{ city.population }}</p>
-                        <small>{{ city.currency }}</small>
+                        <div class="col-sm-8">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ city.name }}</h5>
+                                <small>{{ city.country }}</small>
+                            </div>
+                            <p class="mb-1">Population: {{ city.population }}</p>
+                            <small>Currency: {{ city.currency }}</small>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-        {% endfor %}
+            {% endfor %}
 
+        </div>
     </div>
 </div>
 {% endblock %}

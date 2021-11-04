@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 from .models import Comment, Post, City, Profile
 from django.contrib.auth.models import User
 
-# Create your views here.
+
 class Home(TemplateView):
     template_name = 'home.html'
 
@@ -35,7 +35,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     fields = ['name', 'current_city', 'img', 'bio']
     template_name = "profile_create.html"
     success_url = "/profile/"
- 
+
     def get_context_data(self, **kwargs):
         context = super(CreateView, self).get_context_data(**kwargs)
         context["user"] = User.objects.get(id=self.request.user.id)
@@ -96,7 +96,6 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
-
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'img', 'body']
@@ -124,7 +123,7 @@ class PostShow(TemplateView):
         context = super().get_context_data(**kwargs)
         context['posts'] = Post.objects.filter(id=pk)
         context['comments'] = Comment.objects.filter(post=pk)
-        return context  
+        return context
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -144,65 +143,3 @@ class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object();
         return obj.user == self.request.user
-
-# PROFILE EXTENSION WORK COMMENTED OUT BELOW
-
-# Create your views here.
-# class Signup(View):
-
-#     def post(self, request):
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect("base")
-#         else:
-#             context = {"form": form}
-#             return render(request, "home.html", context)
-
-
-# class Signup(View):
-#     # @login_required
-#     # @transaction.atomic
-#     def update_profile(request):
-#         if request.method == 'POST':
-#             user_form = UserForm(request.POST, instance=request.user)
-#             profile_form = ProfileForm(request.POST, instance=request.user.profile)
-#             if user_form.is_valid() and profile_form.is_valid():
-#                 user_form.save()
-#                 profile_form.save()
-#                 messages.success(request, _('Your profile was successfully updated!'))
-#                 return redirect('settings:profile')
-#             else:
-#                 messages.error(request, _('Please correct the error below.'))
-#         else:
-#             user_form = UserForm(instance=request.user)
-#             profile_form = ProfileForm(instance=request.user.profile)
-#         return render(request, 'profiles/profile.html', {
-#             'user_form': user_form,
-#             'profile_form': profile_form
-#         })
-
-# class home(View):
-
-#     def get(self, request):
-#         return render(request, 'home.html')
-
-#     def update_profile(request):
-#         if request.method == 'POST':
-#             user_form = UserForm(request.POST, instance=request.user)
-#             profile_form = ProfileForm(request.POST, instance=request.user.profile)
-#             if user_form.is_valid() and profile_form.is_valid():
-#                 user_form.save()
-#                 profile_form.save()
-#                 messages.success(request, _('Your profile was successfully updated!'))
-#                 return redirect('settings:profile')
-#             else:
-#                 messages.error(request, _('Please correct the error below.'))
-#         else:
-#             user_form = UserForm(instance=request.user)
-#             profile_form = ProfileForm(instance=request.user.profile)
-#         return render(request, 'profiles/profile.html', {
-#             'user_form': user_form,
-#             'profile_form': profile_form
-#         })

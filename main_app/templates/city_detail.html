@@ -2,53 +2,54 @@
 <!-- city.name isn't showing up in the browser tab... -->
 {% block title %} | {{ city.name }} {% endblock %}
 {% block content %}
+<div class="container">
 
-{% for city in city %}
-    <div class="row">
-        <div class="col-8">
-            <h1>{{ city.name }}, {{ city.country }}</h1>
-            <h5>Population: {{ city.population}}</h5>
-            <h5>Currency: {{city.currency}}</h5>
+    {% for city in city %}
+    
+        <div class="row">
+            <div class="col-8 mt-4">
+                <h1>{{ city.name }}, {{ city.country }}</h1>
+                <h5>Population: {{ city.population}}</h5>
+                <h5>Currency: {{city.currency}}</h5>
+            </div>
+            <div class="col-4 d-flex flex-column align-items-center justify-content-end">
+                {% if city.img == NULL %}
+                    <i class="fas fa-city fa-8x"></i>
+                {% else %}
+                    <img src="{{ city.img }}" alt="{{ city.name }}" style="width: 200px; height: auto;" class="img-thumbnail mt-4" >
+                {% endif %}
+                <a href="{% url 'post_create' %}" type="button" class="btn btn-outline-success mt-4">
+                    Add Post
+                </a>
+            </div>
         </div>
-        <div class="col-4 d-flex flex-column align-items-center justify-content-end">
-            {% if city.img == NULL %}
-                <i class="fas fa-city fa-8x"></i>
-            {% else %}
-                <img src="{{ city.img }}" alt="{{ city.name }}" style="width: 200px; height: auto;" >
-            {% endif %}
-            <!-- change href below to create comment template path: % url 'post_create' % -->
-            <a href="{% url 'post_create' %}" type="button" class="btn btn-outline-success mt-4">
-                Add Post
-            </a>
-        </div>
-    </div>
 
-{% endfor %}
+    {% endfor %}
 
-<div class="list-group">
-    <div class="d-flex flex-column bd-highlight mb-4 mt-4">
+    <div class="list-group">
+        <div class="d-flex flex-column bd-highlight mb-4 mt-4">
 
-        {% for post in posts %}
+            {% for post in posts %}
 
-            <a href="{% url 'post_show' post.pk %}" class="list-group-item list-group-item-action" aria-current="true">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <img src="{{ post.img }}" class="img-thumbnail float-end" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ post.title }}</h5>
-                            <small>{{ post.created_at }}</small>
+                <a href="{% url 'post_show' post.pk %}" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="{{ post.img }}" class="img-thumbnail float-start" class="img-fluid" alt="{{ post.title }}">
                         </div>
-                        <p class="mb-1">{{ post.user }}</p>
-                        <small>{{ post.body }}</small>
+                        <div class="col-sm-8">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ post.title }}</h5>
+                                <small>{{ post.created_at }}</small>
+                            </div>
+                            <p class="mb-1">{{ post.user }}</p>
+                            <small>{{ post.body }}</small>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-        {% endfor %}
+            {% endfor %}
 
+        </div>
     </div>
 </div>
-
 {% endblock %}
