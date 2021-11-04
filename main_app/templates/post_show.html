@@ -21,31 +21,41 @@
         {% endfor %}
         </div>
         <div class="col-3">
+
             {% if user.is_authenticated %}
+
                 {% for post in posts %}
+
                     <a href="{% url 'post_update' post.id %}" type="button" class="btn btn-outline-warning mt-4 text-dark">
                         Edit Post
                     </a>
                     <a href="{% url 'post_delete' post.id %}" type="button" class="btn btn-outline-danger mt-4">
                         Delete
                     </a>
-                    {% endfor %}
-                    {% endif %}
-                    <a href="{% url 'city_list' %}" type="button" class="btn btn-outline-info mt-4">
-                        Go back
-                    </a>
+
+                {% endfor %}
+            
+            {% endif %}
+                
+                <a href="{% url 'city_list' %}" type="button" class="btn btn-outline-info mt-4">
+                    Go back
+                </a>
+
         </div>
         <div class="row mt-4">
             <div class="col-8 offset-4">
+
             {% for comment in comments %}
+                
                 <div class="card mt-4">
-                    <!-- the line below is commented out with the comment and endcomment tags -->
                     {% comment %}<img src="{{ profile.img }}" alt="{{ profile.name }}" class="img-thumbnail">{% endcomment %}
                     <h3 class="card-title">{{ comment.user }}</h3>
                     <p class="card-body">{{ comment.body }}</p>
                     <small class="ms-3 mb-2">{{ comment.created_at }}</small>
                 </div>
+
             {% endfor %}
+            
             </div>
         </div>
     </div>

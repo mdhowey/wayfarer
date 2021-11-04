@@ -9,7 +9,6 @@ urlpatterns = [
     path('accounts/signup/', views.Signup.as_view(), name="signup"),
     path('cities/', views.CityList.as_view(), name="city_list"),
     path('cities/<int:pk>/', views.CityDetail.as_view(), name="city_detail"),
-    # this route is throwing an error
     path('post/create/', views.PostCreate.as_view(), name = 'post_create'),
     path('post/<int:pk>/', views.PostShow.as_view(), name = 'post_show'),
     path('post/<int:pk>/edit', views.PostUpdate.as_view(), name = 'post_update'),

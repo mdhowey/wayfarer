@@ -3,7 +3,9 @@
 {% block title %} | {{ city.name }} {% endblock %}
 {% block content %}
 <div class="container">
+
     {% for city in city %}
+    
         <div class="row">
             <div class="col-8 mt-4">
                 <h1>{{ city.name }}, {{ city.country }}</h1>
@@ -16,7 +18,6 @@
                 {% else %}
                     <img src="{{ city.img }}" alt="{{ city.name }}" style="width: 200px; height: auto;" class="img-thumbnail mt-4" >
                 {% endif %}
-                <!-- change href below to create comment template path: % url 'post_create' % -->
                 <a href="{% url 'post_create' %}" type="button" class="btn btn-outline-success mt-4">
                     Add Post
                 </a>
