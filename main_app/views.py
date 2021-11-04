@@ -96,7 +96,6 @@ class Signup(View):
             context = {"form": form}
             return render(request, "registration/signup.html", context)
 
-
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'img', 'body']

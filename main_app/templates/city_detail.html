@@ -17,7 +17,7 @@
                     <img src="{{ city.img }}" alt="{{ city.name }}" style="width: 200px; height: auto;" class="img-thumbnail mt-4" >
                 {% endif %}
                 <!-- change href below to create comment template path: % url 'post_create' % -->
-                <a href="{% url 'post_create' city.id %}" type="button" class="btn btn-outline-success mt-4">
+                <a href="{% url 'post_create' %}" type="button" class="btn btn-outline-success mt-4">
                     Add Post
                 </a>
             </div>
