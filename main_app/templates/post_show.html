@@ -39,7 +39,8 @@
             <div class="col-8 offset-4">
             {% for comment in comments %}
                 <div class="card mt-4">
-                    <!-- <img src="{{ profile.img }}" alt="{{ profile.name }}" class="img-thumbnail"> -->
+                    <!-- the line below is commented out with the comment and endcomment tags -->
+                    {% comment %}<img src="{{ profile.img }}" alt="{{ profile.name }}" class="img-thumbnail">{% endcomment %}
                     <h3 class="card-title">{{ comment.user }}</h3>
                     <p class="card-body">{{ comment.body }}</p>
                     <small class="ms-3 mb-2">{{ comment.created_at }}</small>
