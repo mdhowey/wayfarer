@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic.base import TemplateView
@@ -9,7 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.decorators import method_decorator
-from .models import Post, City, Profile
+from .models import Comment, Post, City, Profile
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -116,10 +117,14 @@ class PostCreate(LoginRequiredMixin, CreateView):
         Post.objects.create(user_id=user_id, title=title, img=img, city=city, body=body)
         return redirect('city_list')
 
-class PostShow(DetailView):
-    model = Post
+class PostShow(TemplateView):
     template_name = "post_show.html"
 
+    def get_context_data(self, pk, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['posts'] = Post.objects.filter(id=pk)
+        context['comments'] = Comment.objects.filter(post=pk)
+        return context  
 
 class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -139,11 +144,6 @@ class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object();
         return obj.user == self.request.user
-        
-
-
-
-
 
 # PROFILE EXTENSION WORK COMMENTED OUT BELOW
 

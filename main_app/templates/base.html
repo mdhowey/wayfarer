@@ -23,25 +23,22 @@
 
                 {% if user.is_authenticated %}
 
-                <div class="d-flex flex-column">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    <a class="nav-link" href="{% url 'profile' %}" tabindex="-1" aria-disabled="true">Profile</a>
-                    <a class="nav-link" href="{% url 'city_list' %}">Cities</a>
+                <div class="d-flex justify-content-end">
+                    <a class="nav-link ms-2" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link ms-2" href="{% url 'profile' %}" tabindex="-1" aria-disabled="true">Profile</a>
+                    <a class="nav-link ms-2" href="{% url 'city_list' %}">Cities</a>
                 </div>
 
                 {% else %}
 
-                <div class="d-flex flex-column">
-                    <a class="nav-link" href="{% url 'login' %}">Sign in</a>
-                    <a class="nav-link" href="{% url 'signup' %}">Sign up</a>
-                    <a class="nav-link" href="{% url 'city_list' %}">Cities</a>
+                <div class="d-flex justify-content-end">
+                    <a class="nav-link ms-2" href="{% url 'login' %}">Sign in</a>
+                    <a class="nav-link ms-2" href="{% url 'signup' %}">Sign up</a>
+                    <a class="nav-link ms-2" href="{% url 'city_list' %}">Cities</a>
                 </div>
 
                 {% endif %}
 
-                    <!-- LOGIN/REGISTER MODAL STUFF COMMENTED OUT BELOW -->
-                    <!-- <a class="nav-link" href="#modalLogin" data-bs-toggle="modal" data-bs-target="#modalLogin">Sign in</a>
-                    <a class="nav-link" href="#modalRegister" data-bs-toggle="modal" data-bs-target="#modalRegister">Sign up</a> -->
                 </div>
             </div>
         </div>
