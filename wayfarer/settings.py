@@ -1,4 +1,4 @@
-from .secrets import SECRET_KEY
+# from .secrets import SECRET_KEY
 """
 Django settings for wayfarer project.
 
@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://wayfarer-team-1.herokuapp.com/']
 
-SECRET_KEY = SECRET_KEY
+# SECRET_KEY = SECRET_KEY
 # Application definition
 
 INSTALLED_APPS = [
