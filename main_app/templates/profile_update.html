@@ -1,32 +1,11 @@
 {% extends 'base.html' %}
 {% block title %} | Edit User Profile {% endblock %}
 {% block content %}
-<div class="container-fluid mt-4">
-    <div class="d-flex flex-column align-items-center">
-        <h1>Update Profile</h1>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-control g-0">
 
-                {% for field in form %}
-                
-                    <div class="fieldWrapper">
-                        {{ field.errors }}
-                        {{ field.label_tag }} <br>
-                        {{ field }}
-                        <input type="hidden" name="user_id" value="{{ user.id }}" />
-                    </div>
-                
-                {% endfor %}
-                
-                <nav class="nav">
-                    <div class="col">
-                        <button type="submit" class="btn btn-outline-success my-2">Update</button>
-                        <a href="{% url 'profile' %}" class="btn btn-outline-info">Cancel</a>
-                    </div>
-                </nav>
-            </div>
-        </form>
-    </div>
-</div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" />
+    </form>
+
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-{% block title %} | City {% endblock %}
+<!-- city.name isn't showing up in the browser tab... -->
+{% block title %} | {{ city.name }} {% endblock %}
 {% block content %}
 <div class="container">
+
     {% for city in city %}
     
         <div class="row">

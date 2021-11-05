@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
-{% block title %} | Create Post {% endblock %}
+{% block title %} | Edit User Profile {% endblock %}
 {% block content %}
-
 <div class="container-fluid mt-4">
-    <div class="d-flex flex-column align-items-center">
-        <h1>Create Post</h1>
+    <div class="d-flex justify-content-center">
         <form method="post">
             {% csrf_token %}
             <div class="form-control g-0">
@@ -30,11 +28,11 @@
                 {% endfor %}
 
                 <nav class="nav">
-                    <div class="col mt-2">
-                        <a href="{% url 'city_list' %}" type="button" class="btn btn-outline-info text-dark">
+                    <div class="col">
+                        <a href="{% url 'city_list' %}" type="button" class="btn btn-outline-info mt-4">
                             Cancel
                         </a>
-                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                        <button type="submit" class="btn btn-outline-success my-2">Submit</button>
                     </div>
                 </nav>
             </div>
