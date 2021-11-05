@@ -22,7 +22,7 @@
 4. View post "show" pages with title, author, and content.
 
 
-**A user should be able to:**
+**User is able to:**
 
 1. See a "default" profile photo on their profile page before adding their own photo.
 2. Update their profile photo (consider using Paperclip or Uploadcare).
@@ -36,7 +36,7 @@ NOT COMPLETED:
 
 ## **Sprint 2: CRUD**
 
-### **A user should be able to:**
+### **User is able to:**
 
 1. View the "San Francisco" page (at "/cities/1") including:
   - The site-wi de header.
@@ -68,7 +68,7 @@ NOT COMPLETED:
 
 ## **Sprint 3: Validations & Authorization**
 
-### **A user should be able to:**
+### **User is able to:**
 
 1. View city pages for "London" and "Gibraltar".
 2. Verify that a new post they create is successfully published on the correct city page.
