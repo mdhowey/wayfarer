@@ -2,7 +2,7 @@
 
 ## Description
 
-Seagull is a social network that provides travel tips to it's users. Users can authenticate in, add travel tips, view travel tips, and comment on other users travel tips.	
+Wayfarer is a social network that provides travel tips to it's users. Users can authenticate in, add travel tips, view travel tips, and comment on other users travel tips.	
 
 ### The tech stack: 
 The team and I utilized Bootstrap with Django for frontend, Python for backend, and PostgreSQL for database.
@@ -63,7 +63,7 @@ NOT COMPLETED:
   - See a pop-up that says: "Are you sure you want to delete #{title}?"
   - If the user confirms, delete the post.
 
-### Bounses:
+*Bounses:*
 
 *NOT COMPLETED:*
 
