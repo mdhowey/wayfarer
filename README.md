@@ -1,8 +1,17 @@
 # Wayfarer
 
-## **Sprint 1: Basic Auth & Profiles**
+## Description
 
-### **User is able to:**
+Seagull is a social network that provides travel tips to it's users. Users can authenticate in, add travel tips, view travel tips, and comment on other users travel tips.	
+
+### The tech stack: 
+The team and I utilized Bootstrap with Django for frontend, Python for backend, and PostgreSQL for database.
+
+## Usage
+
+### **Sprint 1: Basic Auth & Profiles**
+
+*User is able to:*
 
 1. Navigate to "/" and see a basic splash page with:
   - The name of the website.
@@ -22,7 +31,7 @@
 4. View post "show" pages with title, author, and content.
 
 
-**User is able to:**
+*User is able to:*
 
 1. See a "default" profile photo on their profile page before adding their own photo.
 2. Update their profile photo (consider using Paperclip or Uploadcare).
@@ -34,9 +43,9 @@ NOT COMPLETED:
 
 ---
 
-## **Sprint 2: CRUD**
+### **Sprint 2: CRUD**
 
-### **User is able to:**
+*User is able to:*
 
 1. View the "San Francisco" page (at "/cities/1") including:
   - The site-wi de header.
@@ -56,7 +65,7 @@ NOT COMPLETED:
 
 ### Bounses:
 
-NOT COMPLETED:
+*NOT COMPLETED:*
 
 1. Visit city pages via pretty urls, like "/cities/san-francisco".
 2. Visit user profile pages via pretty urls, like "/users/james".
@@ -66,9 +75,9 @@ NOT COMPLETED:
 
 ---
 
-## **Sprint 3: Validations & Authorization**
+### **Sprint 3: Validations & Authorization**
 
-### **User is able to:**
+*User is able to:*
 
 1. View city pages for "London" and "Gibraltar".
 2. Verify that a new post they create is successfully published on the correct city page.
@@ -84,30 +93,27 @@ A user is authorized to perform certain actions on the site, according to the fo
 1. A user MUST be logged in to create/update/destroy resources.
 2. A user may only edit their own profile and edit/delete their own posts.
 
-### Bounses:
+*Bounses:*
 
 1. View an error message when form validations fail, for the following validations:
   - Title must be between 1 and 200 characters.
   - Content must not be empty.
 
-NOT COMPLETED:
+*NOT COMPLETED:*
 
 1. View only the 10 most recent posts on a city page (pagination), with
   - A link/button to the "Next" 10.
   - A link/button to the "Previous" 10.
 1. See a list of the city pages they've contributed to, on their public profile
 2. See the number of posts they've written for each city, next to the city's name in their profile.
-
-### Phil:
-
 3. View all vagabond cities as markers/pins on a map on the site's homepage.
 4. Click on a pin on the homepage map and be redirected to the corresponding city page.
 
 ---
 
-## **Sprint 4: Commenting**
+### **Sprint 4: Commenting**
 
-### **User is able to:**
+*User is able to:*
 
 1. Comment on individual posts.
 2. See the number of comments a post has on the post's "show" page.
@@ -115,7 +121,7 @@ NOT COMPLETED:
 4. Only add a comment when logged in.
 5. Only edit/delete their own comments.
 
-## Technical requirements:
+### Technical requirements:
 
 - **Django:** Use Django as the core framework for Python.
 - **PostgreSQL:** Use PostgreSQL for your database in development and production.
@@ -128,3 +134,34 @@ NOT COMPLETED:
 - **Responsive Design*:** Make sure your app looks great on a phone or tablet.
 - **Heroku:** Deploy your app to Heroku. Ensure no app secrets are exposed.
 - **Github:** Projects must have a minimum of 60 specific commits. (Just made it...)
+
+
+**See Roadmap below for more information on the future of the project.
+
+## Support
+
+For any questions regarding this project, please email me directly at dev.howey@gmail.com
+
+## Roadmap
+
+This project started out as a group project for a bootcamp. It is possible that in the future it is expounded upon, this depending solely on the eagerness of other developers. For the time being, the project doesn't have much of a future.
+
+## Contributing
+
+Anyone interested in contributing is welcome to do so. Simply submit a pull request, and it will be reviewed promptly.
+
+Please submit a pull request, and I'll be sure to review it ASAP. I am on GitHub daily.
+
+## Authors and acknowledgment
+
+A sincere thank you to an awesome bootcamp team:
+
+  1) Phil Welsh
+  2) Michael Karr
+  3) Apoorva Sharma
+
+## License
+
+Apache License, Version 2.0 **
+
+**To review the licensing, please visit https://www.apache.org/licenses/LICENSE-2.0.txt 
